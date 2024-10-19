@@ -1,4 +1,6 @@
 "use client";
+import EyeFilledIcon from "@/components/Icons/EyeFilledIcon";
+import EyeSlashedFilledIcon from "@/components/Icons/EyeSlashedFilledIcon";
 import { local_login_page, login_img } from "@/constants";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/react";
@@ -18,6 +20,11 @@ export default function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm<ILoginForm>();
+
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  const toggleVisibility = () => setIsVisible(!isVisible);
+
   const onLogin = async (data: ILoginForm) => {
     console.log(data);
   };
@@ -41,7 +48,7 @@ export default function Login() {
               <h3 className=" font-bold text-blue-600 text-3xl">Welcome</h3>
             </div>
             <div className=" my-3">
-              <p className=" font-semibold">Your Journey Starts Here</p>
+              <p className=" font-semibold">Our Journey Starts Here</p>
             </div>
             <div className=" w-full flex flex-col gap-3 justify-center">
               <form onSubmit={handleSubmit(onLogin)}>
@@ -50,7 +57,7 @@ export default function Login() {
                     isRequired
                     type="email"
                     label="Email"
-                    className="max-w-lg"
+                    className="max-w-xl"
                     color="primary"
                     variant="bordered"
                     {...register("email", { required: true })}
@@ -62,11 +69,25 @@ export default function Login() {
                 <div className=" my-3">
                   <Input
                     isRequired
-                    type="password"
+                    type={isVisible ? "text" : "password"}
                     label="Password"
                     className="max-w-lg"
                     color="primary"
                     variant="bordered"
+                    endContent={
+                      <button
+                        className="focus:outline-none"
+                        type="button"
+                        onClick={toggleVisibility}
+                        aria-label="toggle password visibility"
+                      >
+                        {isVisible ? (
+                          <EyeSlashedFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        ) : (
+                          <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        )}
+                      </button>
+                    }
                     {...register("password", {
                       required: "Password is required",
                     })}
