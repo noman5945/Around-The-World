@@ -11,7 +11,7 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
 } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import React, { useState } from "react";
 import AvatarDropdown from "./AvatarDropdown";
@@ -19,11 +19,13 @@ import { IUser } from "@/types/user.type";
 
 export function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
   const [user, setUser] = useState<IUser | null>({
     name: "Lina",
     email: "abc@gmail.com",
   });
   const routes = useRouter();
+
   const handleMenuOpen = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -51,21 +53,19 @@ export function NavBar() {
         </p>
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page">
-            Customers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
-          </Link>
-        </NavbarItem>
+        {navBarItems.map((items, index) => {
+          return (
+            <NavbarItem key={index} isActive={pathname === items.route}>
+              <Link
+                color={pathname === items.route ? `primary` : `foreground`}
+                href={items.route}
+                aria-current="page"
+              >
+                {items.name}
+              </Link>
+            </NavbarItem>
+          );
+        })}
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className=" lg:flex">
@@ -88,7 +88,7 @@ export function NavBar() {
       <NavbarMenu>
         {navBarItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
-            <Link className="w-full" href="#" size="lg">
+            <Link className="w-full" href={item.route} size="lg">
               {item.name}
             </Link>
           </NavbarMenuItem>

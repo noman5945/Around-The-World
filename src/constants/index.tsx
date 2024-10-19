@@ -1,8 +1,12 @@
 import loginPic from "/public/login_pic.jpg";
 export const navBarItems = [
   {
-    name: "Posts",
-    route: "/posts",
+    name: "Places",
+    route: "/places",
+  },
+  {
+    name: "Community",
+    route: "/community",
   },
   {
     name: "About",
