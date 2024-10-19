@@ -1,3 +1,4 @@
+import loginPic from "/public/login_pic.jpg";
 export const navBarItems = [
   {
     name: "Posts",
@@ -8,3 +9,7 @@ export const navBarItems = [
     route: "/about",
   },
 ];
+
+export const login_img =
+  "https://khalkoholiday.com/wp-content/uploads/2024/02/andaman-and-nicobar-islands-trip-scaled.jpg";
+export const local_login_page = loginPic;
