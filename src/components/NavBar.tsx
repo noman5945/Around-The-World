@@ -56,13 +56,17 @@ export function NavBar() {
         {navBarItems.map((items, index) => {
           return (
             <NavbarItem key={index} isActive={pathname === items.route}>
-              <Link
-                color={pathname === items.route ? `primary` : `foreground`}
-                href={items.route}
+              <Button
+                color={pathname === items.route ? `primary` : `default`}
+                onClick={() => handleRouteChange(items.route)}
                 aria-current="page"
+                variant="light"
+                className={
+                  pathname === items.route ? " border-b-2 border-blue-700" : ""
+                }
               >
                 {items.name}
-              </Link>
+              </Button>
             </NavbarItem>
           );
         })}
@@ -77,7 +81,8 @@ export function NavBar() {
             />
           ) : (
             <Button
-              className=" bg-black text-white"
+              className="  text-white"
+              color="primary"
               onClick={() => handleRouteChange("/login")}
             >
               Login
@@ -88,9 +93,14 @@ export function NavBar() {
       <NavbarMenu>
         {navBarItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
-            <Link className="w-full" href={item.route} size="lg">
-              {item.name}
-            </Link>
+            <Button
+              size="lg"
+              variant="flat"
+              className=" w-full"
+              onClick={() => handleRouteChange(item.route)}
+            >
+              <p className=" font-semibold text-blue-700">{item.name}</p>
+            </Button>
           </NavbarMenuItem>
         ))}
       </NavbarMenu>
