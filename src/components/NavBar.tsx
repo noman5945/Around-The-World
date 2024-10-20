@@ -40,7 +40,7 @@ export function NavBar() {
       isBordered
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={handleMenuOpen}
-      className=" shadow-md "
+      className=" shadow-md backdrop-saturate-200 bg-white/30"
     >
       <NavbarContent className=" md:hidden">
         <NavbarMenuToggle
@@ -65,7 +65,7 @@ export function NavBar() {
                   pathname === items.route ? " border-b-2 border-blue-700" : ""
                 }
               >
-                {items.name}
+                <p className=" font-light text-lg">{items.name}</p>
               </Button>
             </NavbarItem>
           );
