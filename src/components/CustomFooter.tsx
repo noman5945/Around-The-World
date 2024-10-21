@@ -6,7 +6,7 @@ import YTSocial from "../../public/youtube.png";
 
 export default function CustomFooter() {
   return (
-    <div className=" w-full border-t-2 flex flex-col items-center">
+    <div className=" w-full border-t-2 flex flex-col items-center mt-[5%]">
       <div className=" text-center p-3">
         <h2 className=" font-semibold text-lg lg:text-2xl">Around the World</h2>
       </div>
