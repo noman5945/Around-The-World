@@ -21,6 +21,7 @@ export default function CountriesSection() {
               key={country.id}
               countryName={country.countryname}
               imgString={country.imgSrc}
+              bgImg={country.bgImg}
             />
           );
         })}
