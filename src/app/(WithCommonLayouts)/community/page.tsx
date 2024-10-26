@@ -11,6 +11,8 @@ export default function page() {
         </div>
         <div className=" flex flex-col gap-3 w-full items-center mt-2">
           <PostCard />
+          <PostCard />
+          <PostCard />
         </div>
       </div>
     </div>
